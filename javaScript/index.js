@@ -29,6 +29,8 @@ function preload() {
   this.load.spritesheet('mario', 'assets/entities/mario.png', { frameWidth: 18, frameHeight: 16 })
 
   this.load.audio('gameOver', 'assets/sound/music/gameover.mp3')
+  this.load.audio('jump', 'assets/sound/effects/jump.mp3')
+  this.load.audio('overWorld', 'assets/sound/music/overworld/theme.mp3')
 }
 
 function create() {
@@ -56,6 +58,11 @@ function create() {
   createAnimations(this)
 
   this.keys = this.input.keyboard.createCursorKeys()
+
+  this.sound.add('overWorld', {
+    loop: true,
+    volume: 0.2,
+  }).play()
 }
 
 function update() {
@@ -76,13 +83,20 @@ function update() {
   if (this.keys.space.isDown && this.mario.body.touching.down) {
     this.mario.setVelocityY(-300)
     this.mario.anims.play('marioJump', true)
+    this.sound.add('jump', {
+      volume:0.1,
+    }).play()
   }
 
   if (this.mario.y >= config.height) {
     this.mario.isDead = true
     this.mario.anims.play('marioDead', true)
     this.mario.setCollideWorldBounds(false)
-    this.sound.play('gameOver')
+    this.sound
+      .add('gameOver', {
+        volume: 0.2,
+      })
+      .play()
 
     setTimeout(() => {
       this.mario.setVelocityY(-350)
