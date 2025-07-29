@@ -1,22 +1,69 @@
+//cargamos las animaciones del juego 
 export const createAnimations = game => {
-    game.anims.create({
-        key: 'marioIdle',
-        frames: [{ key: 'mario', frame: 0 }],
-        frameRate: 12,
-        repeat: -1,
-    })
-    game.anims.create({
-        key: 'marioWalk',
-        frames: game.anims.generateFrameNumbers('mario', { start: 3, end: 1 }),
-        frameRate: 12,
-        repeat: -1,
-    })
-    game.anims.create({
-        key: 'marioJump',
-        frames: [{ key: 'mario', frame: 5 }],
-    })
-    game.anims.create({
-        key: 'marioDead',
-        frames: [{ key: 'mario', frame: 4 }],
-    })
+  game.anims.create({
+    key: 'marioIdle',
+    frames: [{ key: 'mario', frame: 0 }],
+    frameRate: 12,
+    repeat: -1,
+  })
+
+  game.anims.create({
+    key: 'marioWalk',
+    frames: game.anims.generateFrameNumbers('mario', { start: 3, end: 1 }),
+    frameRate: 12,
+    repeat: -1,
+  })
+
+  game.anims.create({
+    key: 'marioJump',
+    frames: [{ key: 'mario', frame: 5 }],
+  })
+
+  game.anims.create({
+    key: 'marioDead',
+    frames: [{ key: 'mario', frame: 4 }],
+  })
+
+  game.anims.create({
+    key: 'marioGrownIdle',
+    frames: [{ key: 'marioGrown', frame: 0 }],
+  })
+
+  game.anims.create({
+    key: 'marioGrownWalk',
+    frames: game.anims.generateFrameNumbers('marioGrown', { start: 3, end: 1 }),
+    frameRate: 12,
+    repeat: -1,
+  })
+
+  game.anims.create({
+    key: 'marioGrownJump',
+    frames: [{ key: 'marioGrown', frame: 5 }],
+  })
+
+  game.anims.create({
+    key: 'marioGrownCrouch',
+    frames: [{ key: 'marioGrown', frame: 4 }],
+  })
+
+  game.anims.create({
+    key: 'goombaWalk',
+    frames: game.anims.generateFrameNumbers('goomba', { start: 0, end: 1 }),
+    frameRate: 12,
+    repeat: -1,
+  })
+
+  game.anims.create({
+    key: 'goombaDead',
+    frames: [{ key: 'goomba', frame: 2 }],
+    frameRate: 12,
+    repeat: -1,
+  })
+
+  game.anims.create({
+    key: 'coinIdle',
+    frames: game.anims.generateFrameNumbers('coin', { start: 0, end: 3 }),
+    frameRate: 12,
+    repeat: -1,
+  })
 }
