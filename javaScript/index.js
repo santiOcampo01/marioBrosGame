@@ -77,6 +77,10 @@ function create() {
       .image(1026, config.height - 32, 'bush1')
       .setOrigin(0, 1)
       .setScale(0.7)
+    this.add
+      .image(195, config.height - 32, 'bush1')
+      .setOrigin(0, 1)
+      .setScale(0.7)
   this.add
       .image(400, config.height - 32, 'bush2')
       .setOrigin(0, 1)
