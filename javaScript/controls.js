@@ -28,7 +28,7 @@ export const controls = (game) => {
 
     //velocidad y salto de mario
     const velocityX = 150;
-    const jumpForce = -250;
+    const jumpForce = -300;
 
     if (mario.isDead) return; // si mario esta muerto no hacemos nada
     if (mario.isBlocked) return; // si mario esta bloqueado no hacemos nada

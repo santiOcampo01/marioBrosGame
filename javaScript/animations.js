@@ -66,4 +66,16 @@ export const createAnimations = game => {
     frameRate: 12,
     repeat: -1,
   })
+
+  game.anims.create({
+    key: 'misteryBlockIdle',
+    frames: game.anims.generateFrameNumbers('misteryBlock', { start: 0, end: 2 }),
+    frameRate: 3,
+    repeat: -1,
+  })
+    game.anims.create({
+      key: 'emptyBlockIdle',
+      frames: [{ key: 'emptyBlock', frame: 0 }],
+    })
+
 }
