@@ -160,6 +160,9 @@ function create() {
 
   this.physics.add.collider(this.mario, floorGroup) //colision entre mario y el suelo
 
+
+  
+
   this.physics.add.collider(this.mario, tubes)
 
   // this.physics.add.collider(this.enemy, floorGroup) //colision entre los enemigos y el suelo
