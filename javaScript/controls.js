@@ -54,7 +54,7 @@ export const controls = (game) => {
     else if (isKeyDown && mario.isGrown) { // flecha hacia y mario grande
         mario.anims.play(marioAnimations.crouch, true); // reproducimos la animacion de agacharse
         mario.setVelocityX(0) // detenemos a mario
-        mario.body.setSize(18, 16) // ajustamos el tamaño para que se ajuste al sprite de mario agachado
+        mario.body.setSize(10, 16) // ajustamos el tamaño para que se ajuste al sprite de mario agachado
         mario.body.setOffset(0, 16) // ajustamos el offset para que la colision se ajuste en los pies de mario agachado
     } 
     else if(isMarioOnFloor) { //mario quieto
