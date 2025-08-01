@@ -3,7 +3,7 @@ import { controls } from './controls.js'
 import { loadImages } from './images.js'
 import { initAudio, playAudio } from './audio.js'
 import { spriteSheets } from './spritesSheets.js'
-import { createScenery } from './scenery.js'
+import { createScenery, staticsBlocks } from './scenery.js'
 
 //Configuracion de Phaser
 const config = {
@@ -17,7 +17,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 }, // gravedad en el eje y
-      debug: true, // habilita el modo debug para ver colisiones
+      debug: false, // habilita el modo debug para ver colisiones
     },
   },
   scene: {
@@ -72,25 +72,56 @@ function create() {
     .image(150, config.height - 32, 'bush1')
     .setOrigin(0, 1)
     .setScale(0.7)
-
-    this.add
-      .image(1026, config.height - 32, 'bush1')
-      .setOrigin(0, 1)
-      .setScale(0.7)
-    this.add
-      .image(195, config.height - 32, 'bush1')
-      .setOrigin(0, 1)
-      .setScale(0.7)
   this.add
-      .image(400, config.height - 32, 'bush2')
-      .setOrigin(0, 1)
-      .setScale(0.7)
+    .image(2319, config.height - 32, 'bush1')
+    .setOrigin(0, 1)
+    .setScale(0.5)
   this.add
-      .image(680, config.height - 32, 'bush2')
-      .setOrigin(0, 1)
-      .setScale(0.7)
+    .image(1026, config.height - 32, 'bush1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(195, config.height - 32, 'bush1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(1505, config.height - 32, 'bush1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(1800, config.height - 32, 'bush1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(2850, config.height - 32, 'bush2')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(400, config.height - 32, 'bush2')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(680, config.height - 32, 'bush2')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(1185, config.height - 32, 'bush2')
+    .setOrigin(0, 1)
+    .setScale(0.7)
   this.add
     .image(256, config.height - 32, 'mountain1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(1880, config.height - 32, 'mountain1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(2695, config.height - 32, 'mountain1')
+    .setOrigin(0, 1)
+    .setScale(0.7)
+  this.add
+    .image(3254, config.height - 32, 'mountain2')
     .setOrigin(0, 1)
     .setScale(0.7)
   this.add
@@ -101,15 +132,27 @@ function create() {
     .image(0, config.height - 32, 'mountain2')
     .setOrigin(0, 1)
     .setScale(0.55)
+  this.add
+    .image(2420, config.height - 32, 'mountain2')
+    .setOrigin(0, 1)
+    .setScale(0.55)
+  this.add
+    .image(1620, config.height - 32, 'mountain2')
+    .setOrigin(0, 1)
+    .setScale(0.55)
 
-    let tubes  = this.physics.add.staticGroup()
+  let tubes = this.physics.add.staticGroup()
   tubes.create(500, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
   tubes.create(660, config.height - 56, 'mediumTube').setOrigin(0.5, 0.5)
   tubes.create(820, config.height - 64, 'largeTube').setOrigin(0.5, 0.5)
   tubes.create(1000, config.height - 64, 'largeTube').setOrigin(0.5, 0.5)
 
+  tubes.create(2778, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
+
+  tubes.create(3080, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
+
   this.mario = this.physics.add
-    .sprite(50, config.height - 32, 'mario')
+    .sprite(3270, config.height - 80, 'mario')
     .setOrigin(0, 1)
     .setCollideWorldBounds(true)
     .setGravityY(300) //inicializa a mario
@@ -131,21 +174,200 @@ function create() {
   createScenery(768, config.height - 16, 'floorBricks', floorGroup)
   createScenery(895, config.height - 16, 'floorBricks', floorGroup)
   createScenery(1023, config.height - 16, 'floorBricks', floorGroup)
-  createScenery(1201, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1181, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1309, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1500, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1628, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1756, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(1884, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2012, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2140, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2268, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2396, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2456, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2625, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2753, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(2881, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(3009, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(3137, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(3265, config.height - 16, 'floorBricks', floorGroup)
+  createScenery(3392, config.height - 16, 'floorBricks', floorGroup)
+
+  let blocks = this.physics.add.staticGroup() // grupo de bloques estaticos
+  staticsBlocks(264, 150, 'misteryBlock', blocks)
+  staticsBlocks(264, 150, 'misteryBlock', blocks)
+
+  staticsBlocks(350, 150, 'brickBlock', blocks)
+  staticsBlocks(366, 150, 'misteryBlock', blocks)
+  staticsBlocks(382, 150, 'brickBlock', blocks)
+  staticsBlocks(398, 150, 'misteryBlock', blocks)
+  staticsBlocks(414, 150, 'brickBlock', blocks)
+
+  staticsBlocks(382, 80, 'misteryBlock', blocks)
+
+  staticsBlocks(1287, 150, 'brickBlock', blocks)
+  staticsBlocks(1303, 150, 'misteryBlock', blocks)
+  staticsBlocks(1318, 150, 'brickBlock', blocks)
+  staticsBlocks(1334, 80, 'brickBlock', blocks)
+  //pon 5 brickBlocks con 16 pixeles de espacio entre ellos
+  staticsBlocks(1350, 80, 'brickBlock', blocks)
+  staticsBlocks(1366, 80, 'brickBlock', blocks)
+  staticsBlocks(1382, 80, 'brickBlock', blocks)
+  staticsBlocks(1398, 80, 'brickBlock', blocks)
+  staticsBlocks(1414, 80, 'brickBlock', blocks)
+  staticsBlocks(1430, 80, 'brickBlock', blocks)
+  staticsBlocks(1446, 80, 'brickBlock', blocks)
+  staticsBlocks(1462, 80, 'brickBlock', blocks)
+
+  staticsBlocks(1532, 80, 'brickBlock', blocks)
+  staticsBlocks(1548, 80, 'brickBlock', blocks)
+  staticsBlocks(1564, 80, 'brickBlock', blocks)
+  staticsBlocks(1580, 80, 'brickBlock', blocks)
+  staticsBlocks(1596, 80, 'misteryBlock', blocks)
+  staticsBlocks(1596, 150, 'brickBlock', blocks)
+
+  staticsBlocks(1700, 150, 'brickBlock', blocks)
+  staticsBlocks(1716, 150, 'brickBlock', blocks)
+
+  staticsBlocks(1800, 150, 'misteryBlock', blocks)
+  staticsBlocks(1850, 150, 'misteryBlock', blocks)
+  staticsBlocks(1900, 150, 'misteryBlock', blocks)
+  staticsBlocks(1850, 80, 'misteryBlock', blocks)
+
+  staticsBlocks(2000, 150, 'brickBlock', blocks)
+  staticsBlocks(2048, 80, 'brickBlock', blocks)
+  staticsBlocks(2064, 80, 'brickBlock', blocks)
+  staticsBlocks(2080, 80, 'brickBlock', blocks)
+
+  staticsBlocks(2160, 80, 'brickBlock', blocks)
+  staticsBlocks(2176, 80, 'misteryBlock', blocks)
+  staticsBlocks(2192, 80, 'misteryBlock', blocks)
+  staticsBlocks(2176, 150, 'brickBlock', blocks)
+  staticsBlocks(2192, 150, 'brickBlock', blocks)
+  staticsBlocks(2208, 80, 'brickBlock', blocks)
+
+  staticsBlocks(2870, 150, 'brickBlock', blocks)
+  staticsBlocks(2886, 150, 'brickBlock', blocks)
+  staticsBlocks(2902, 150, 'misteryBlock', blocks)
+  staticsBlocks(2918, 150, 'brickBlock', blocks)
+
+  staticsBlocks(2272, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2288, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2304, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2320, config.height - 40, 'staticBlock', blocks)
+
+  staticsBlocks(2288, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2304, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2320, config.height - 56, 'staticBlock', blocks)
+
+  staticsBlocks(2304, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(2320, config.height - 72, 'staticBlock', blocks)
+
+  staticsBlocks(2320, config.height - 88, 'staticBlock', blocks)
+
+  staticsBlocks(2368, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2384, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2400, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2416, config.height - 40, 'staticBlock', blocks)
+
+  staticsBlocks(2368, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2384, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2400, config.height - 56, 'staticBlock', blocks)
+
+  staticsBlocks(2368, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(2384, config.height - 72, 'staticBlock', blocks)
+
+  staticsBlocks(2368, config.height - 88, 'staticBlock', blocks)
+
+  staticsBlocks(2512, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2528, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2544, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2560, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2576, config.height - 40, 'staticBlock', blocks)
+
+  staticsBlocks(2528, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2544, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2560, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2576, config.height - 56, 'staticBlock', blocks)
+
+  staticsBlocks(2544, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(2560, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(2576, config.height - 72, 'staticBlock', blocks)
+
+  staticsBlocks(2560, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(2576, config.height - 88, 'staticBlock', blocks)
+
+  staticsBlocks(2633, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2649, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2665, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(2681, config.height - 40, 'staticBlock', blocks)
+
+  staticsBlocks(2633, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2649, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(2665, config.height - 56, 'staticBlock', blocks)
+
+  staticsBlocks(2633, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(2649, config.height - 72, 'staticBlock', blocks)
+
+  staticsBlocks(2633, config.height - 88, 'staticBlock', blocks)
 
 
-  this.blocks = this.physics.add.staticGroup() // grupo de bloques estaticos
-  this.blocks.create(264, 150, 'misteryBlock').anims.play('misteryBlockIdle', true).setOrigin(0.5, 0.5)
+  staticsBlocks(3106, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3122, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3138, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3154, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3170, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 40, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 40, 'staticBlock', blocks)
 
-  this.blocks.create(350, 150, 'brickBlock').setOrigin(0.5, 0.5)
-  let misteryBlockMushroom = this.blocks.create(366, 150, 'misteryBlock').anims.play('misteryBlockIdle', true).setOrigin(0.5, 0.5)
-  misteryBlockMushroom.contains = 'mushroom'
-  this.blocks.create(382, 150, 'brickBlock').setOrigin(0.5, 0.5)
-  this.blocks.create(398, 150, 'misteryBlock').anims.play('misteryBlockIdle', true).setOrigin(0.5, 0.5)
-  this.blocks.create(414, 150, 'brickBlock').setOrigin(0.5, 0.5)
+  staticsBlocks(3122, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3138, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3154, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3170, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 56, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 56, 'staticBlock', blocks)
 
-  this.blocks.create(382, 80, 'misteryBlock').anims.play('misteryBlockIdle', true).setOrigin(0.5, 0.5)
-  
+    staticsBlocks(3138, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3154, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3170, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3186, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3202, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3218, config.height - 72, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 72, 'staticBlock', blocks)
+
+    staticsBlocks(3154, config.height - 88, 'staticBlock', blocks)
+    staticsBlocks(3170, config.height - 88, 'staticBlock', blocks)
+    staticsBlocks(3186, config.height - 88, 'staticBlock', blocks)
+    staticsBlocks(3202, config.height - 88, 'staticBlock', blocks)
+    staticsBlocks(3218, config.height - 88, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 88, 'staticBlock', blocks)
+
+    staticsBlocks(3170, config.height - 104, 'staticBlock', blocks)
+    staticsBlocks(3186, config.height - 104, 'staticBlock', blocks)
+    staticsBlocks(3202, config.height - 104, 'staticBlock', blocks)
+    staticsBlocks(3218, config.height - 104, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 104, 'staticBlock', blocks)
+
+    staticsBlocks(3186, config.height - 120, 'staticBlock', blocks)
+    staticsBlocks(3202, config.height - 120, 'staticBlock', blocks)
+    staticsBlocks(3218, config.height - 120, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 120, 'staticBlock', blocks)
+
+    staticsBlocks(3202, config.height - 136, 'staticBlock', blocks)
+    staticsBlocks(3218, config.height - 136, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 136, 'staticBlock', blocks)
+
+    staticsBlocks(3218, config.height - 152, 'staticBlock', blocks)
+    staticsBlocks(3234, config.height - 152, 'staticBlock', blocks)
+
+    staticsBlocks(3400, config.height - 116, 'flagMast', blocks)
+    staticsBlocks(3392, config.height - 182, 'flag', blocks)
+
+
   this.collectibes = this.physics.add.staticGroup() //grupo estatico para los objetos coleccionables
   this.collectibes.create(150, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5) //monedas
   this.collectibes.create(300, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5) //monedas
@@ -156,22 +378,18 @@ function create() {
 
   this.physics.add.overlap(this.mario, this.collectibes, collectItem, null, this) //colision entre mario y los objetos coleccionables
 
-  this.physics.world.setBounds(0, 0, 2000, config.height) // establece los limites del mundo del juego
+  this.physics.world.setBounds(0, 0, 4000, config.height) // establece los limites del mundo del juego
 
   this.physics.add.collider(this.mario, floorGroup) //colision entre mario y el suelo
-
-
-  
 
   this.physics.add.collider(this.mario, tubes)
 
   // this.physics.add.collider(this.enemy, floorGroup) //colision entre los enemigos y el suelo
 
   // this.physics.add.collider(this.mario, this.enemy, onHitEnemy, null, this) //colision entre mario y los enemigos
+  this.physics.add.collider(this.mario, blocks, collectBlocks, null, this)
 
-  this.physics.add.collider(this.mario, this.blocks, collectBlocks, null, this)
-
-  this.cameras.main.setBounds(0, 0, 2000, config.height) // establece los limites de la camara
+  this.cameras.main.setBounds(0, 0, 4000, config.height) // establece los limites de la camara
 
   this.cameras.main.startFollow(this.mario) // hace que la camara siga a mario
 
@@ -184,7 +402,7 @@ function create() {
     if (key === 'misteryBlock') {
       if (mario.body.touching.up && block.body.touching.down) {
         if (block.contains === 'mushroom') {
-            let mushroom = this.collectibes.create(block.x, block.y, 'superMushroom')
+          let mushroom = this.collectibes.create(block.x, block.y, 'superMushroom')
 
           this.tweens.add({
             targets: mushroom,
@@ -198,29 +416,29 @@ function create() {
             targets: block,
             y: block.y - 5,
             duration: 100,
-          yoyo: true,
-        })
-        const coin = this.physics.add.sprite(block.x, block.y, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5).setScale(1)
-        coin.setVelocityY(-200)
-        playAudio('coinCollect', this, { volume: 0.1 }) // reproduce el sonido de la moneda
+            yoyo: true,
+          })
+          const coin = this.physics.add.sprite(block.x, block.y, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5).setScale(1)
+          coin.setVelocityY(-200)
+          playAudio('coinCollect', this, { volume: 0.1 }) // reproduce el sonido de la moneda
 
-        this.time.addEvent({
-          delay: 500,
-          callback: () => {
-            coin.setVelocityY(150)
-          },
-        })
+          this.time.addEvent({
+            delay: 500,
+            callback: () => {
+              coin.setVelocityY(150)
+            },
+          })
 
-        this.time.addEvent({
-          delay: 500,
-          callback: () => {
-            addToScore(100, coin, this)
-            coin.destroy()
-          },
-        })
+          this.time.addEvent({
+            delay: 500,
+            callback: () => {
+              addToScore(100, coin, this)
+              coin.destroy()
+            },
+          })
+        }
       }
-    }
-    }else if (key === 'brickBlock') {
+    } else if (key === 'brickBlock') {
       if (mario.body.touching.up && block.body.touching.down) {
         if (mario.isGrown) {
           playAudio('blockBreak', this)

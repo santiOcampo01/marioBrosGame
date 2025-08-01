@@ -3,6 +3,7 @@ const INIT_IMAGES = [
   { key: 'cloud1', path: 'assets/scenery/overworld/cloud1.png' },
   { key: 'cloud2', path: 'assets/scenery/overworld/cloud2.png' },
   { key: 'floorBricks', path: 'assets/scenery/overworld/floorbricks.png' },
+  { key: 'staticBlock', path: 'assets/blocks/overworld/immovableBlock.png' },
   { key: 'superMushroom', path: 'assets/collectibles/super-mushroom.png' },
   { key: 'bush1', path: 'assets/scenery/overworld/bush1.png' },
   { key: 'bush2', path: 'assets/scenery/overworld/bush2.png' },
@@ -13,6 +14,8 @@ const INIT_IMAGES = [
   { key: 'smallTube', path: 'assets/scenery/vertical-small-tube.png' },
   { key: 'mediumTube', path: 'assets/scenery/vertical-medium-tube.png' },
   { key: 'largeTube', path: 'assets/scenery/vertical-large-tube.png.png' },
+  { key: 'flagMast', path: 'assets/scenery/flag-mast.png' },
+  { key: 'flag', path: 'assets/scenery/final-flag.png' },
 ]
 
 // funcion para cargar las imagenes recorriendo el objeto INIT_IMAGES donde esta su key y path
