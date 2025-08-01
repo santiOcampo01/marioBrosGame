@@ -17,7 +17,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 }, // gravedad en el eje y
-      debug: true, // habilita el modo debug para ver colisiones
+      debug: false, // habilita el modo debug para ver colisiones
     },
   },
   scene: {
