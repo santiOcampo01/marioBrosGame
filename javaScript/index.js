@@ -17,7 +17,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 }, // gravedad en el eje y
-      debug: false, // habilita el modo debug para ver colisiones
+      debug: true, // habilita el modo debug para ver colisiones
     },
   },
   scene: {
@@ -152,8 +152,9 @@ function create() {
   tubes.create(3080, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
 
   this.mario = this.physics.add
-    .sprite(3270, config.height - 80, 'mario')
+    .sprite(10, config.height - 80, 'mario')
     .setOrigin(0, 1)
+    .setSize(10, 15)
     .setCollideWorldBounds(true)
     .setGravityY(300) //inicializa a mario
 
@@ -194,7 +195,6 @@ function create() {
   createScenery(3392, config.height - 16, 'floorBricks', floorGroup)
 
   let blocks = this.physics.add.staticGroup() // grupo de bloques estaticos
-  staticsBlocks(264, 150, 'misteryBlock', blocks)
   staticsBlocks(264, 150, 'misteryBlock', blocks)
 
   staticsBlocks(350, 150, 'brickBlock', blocks)
@@ -311,7 +311,6 @@ function create() {
 
   staticsBlocks(2633, config.height - 88, 'staticBlock', blocks)
 
-
   staticsBlocks(3106, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3122, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3138, config.height - 40, 'staticBlock', blocks)
@@ -331,42 +330,41 @@ function create() {
   staticsBlocks(3218, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 56, 'staticBlock', blocks)
 
-    staticsBlocks(3138, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3154, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3170, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3186, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3202, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3218, config.height - 72, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3138, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3154, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3170, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 72, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 72, 'staticBlock', blocks)
 
-    staticsBlocks(3154, config.height - 88, 'staticBlock', blocks)
-    staticsBlocks(3170, config.height - 88, 'staticBlock', blocks)
-    staticsBlocks(3186, config.height - 88, 'staticBlock', blocks)
-    staticsBlocks(3202, config.height - 88, 'staticBlock', blocks)
-    staticsBlocks(3218, config.height - 88, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3154, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3170, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 88, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 88, 'staticBlock', blocks)
 
-    staticsBlocks(3170, config.height - 104, 'staticBlock', blocks)
-    staticsBlocks(3186, config.height - 104, 'staticBlock', blocks)
-    staticsBlocks(3202, config.height - 104, 'staticBlock', blocks)
-    staticsBlocks(3218, config.height - 104, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 104, 'staticBlock', blocks)
+  staticsBlocks(3170, config.height - 104, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 104, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 104, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 104, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 104, 'staticBlock', blocks)
 
-    staticsBlocks(3186, config.height - 120, 'staticBlock', blocks)
-    staticsBlocks(3202, config.height - 120, 'staticBlock', blocks)
-    staticsBlocks(3218, config.height - 120, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 120, 'staticBlock', blocks)
+  staticsBlocks(3186, config.height - 120, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 120, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 120, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 120, 'staticBlock', blocks)
 
-    staticsBlocks(3202, config.height - 136, 'staticBlock', blocks)
-    staticsBlocks(3218, config.height - 136, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 136, 'staticBlock', blocks)
+  staticsBlocks(3202, config.height - 136, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 136, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 136, 'staticBlock', blocks)
 
-    staticsBlocks(3218, config.height - 152, 'staticBlock', blocks)
-    staticsBlocks(3234, config.height - 152, 'staticBlock', blocks)
+  staticsBlocks(3218, config.height - 152, 'staticBlock', blocks)
+  staticsBlocks(3234, config.height - 152, 'staticBlock', blocks)
 
-    staticsBlocks(3400, config.height - 116, 'flagMast', blocks)
-    staticsBlocks(3392, config.height - 182, 'flag', blocks)
-
+  staticsBlocks(3400, config.height - 116, 'flagMast', blocks)
+  staticsBlocks(3392, config.height - 182, 'flag', blocks)
 
   this.collectibes = this.physics.add.staticGroup() //grupo estatico para los objetos coleccionables
   this.collectibes.create(150, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5) //monedas

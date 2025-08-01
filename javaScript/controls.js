@@ -38,7 +38,7 @@ export const controls = (game) => {
     ? MARIO_ANIMATIONS.marioGrown 
     : MARIO_ANIMATIONS.mario;
 
-    if(mario.isGrown) mario.body.setSize(18, 32) // si mario es grande cambiamos el tamaño del cuerpo de mario para que se ajuste al sprite de mario grande
+    if(mario.isGrown) mario.body.setSize(10, 32) // si mario es grande cambiamos el tamaño del cuerpo de mario para que se ajuste al sprite de mario grande
     
 
     if (isKeyLeftDown) { // lecha izquierda
