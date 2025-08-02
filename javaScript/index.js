@@ -146,9 +146,7 @@ function create() {
   tubes.create(660, config.height - 56, 'mediumTube').setOrigin(0.5, 0.5)
   tubes.create(820, config.height - 64, 'largeTube').setOrigin(0.5, 0.5)
   tubes.create(1000, config.height - 64, 'largeTube').setOrigin(0.5, 0.5)
-
   tubes.create(2778, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
-
   tubes.create(3080, config.height - 48, 'smallTube').setOrigin(0.5, 0.5)
 
   this.mario = this.physics.add
@@ -196,15 +194,12 @@ function create() {
 
   let blocks = this.physics.add.staticGroup() // grupo de bloques estaticos
   staticsBlocks(264, 150, 'misteryBlock', blocks)
-
   staticsBlocks(350, 150, 'brickBlock', blocks)
   staticsBlocks(366, 150, 'misteryBlock', blocks)
   staticsBlocks(382, 150, 'brickBlock', blocks)
   staticsBlocks(398, 150, 'misteryBlock', blocks)
   staticsBlocks(414, 150, 'brickBlock', blocks)
-
   staticsBlocks(382, 80, 'misteryBlock', blocks)
-
   staticsBlocks(1287, 150, 'brickBlock', blocks)
   staticsBlocks(1303, 150, 'misteryBlock', blocks)
   staticsBlocks(1318, 150, 'brickBlock', blocks)
@@ -218,99 +213,76 @@ function create() {
   staticsBlocks(1430, 80, 'brickBlock', blocks)
   staticsBlocks(1446, 80, 'brickBlock', blocks)
   staticsBlocks(1462, 80, 'brickBlock', blocks)
-
   staticsBlocks(1532, 80, 'brickBlock', blocks)
   staticsBlocks(1548, 80, 'brickBlock', blocks)
   staticsBlocks(1564, 80, 'brickBlock', blocks)
   staticsBlocks(1580, 80, 'brickBlock', blocks)
   staticsBlocks(1596, 80, 'misteryBlock', blocks)
   staticsBlocks(1596, 150, 'brickBlock', blocks)
-
   staticsBlocks(1700, 150, 'brickBlock', blocks)
   staticsBlocks(1716, 150, 'brickBlock', blocks)
-
   staticsBlocks(1800, 150, 'misteryBlock', blocks)
   staticsBlocks(1850, 150, 'misteryBlock', blocks)
   staticsBlocks(1900, 150, 'misteryBlock', blocks)
   staticsBlocks(1850, 80, 'misteryBlock', blocks)
-
   staticsBlocks(2000, 150, 'brickBlock', blocks)
   staticsBlocks(2048, 80, 'brickBlock', blocks)
   staticsBlocks(2064, 80, 'brickBlock', blocks)
   staticsBlocks(2080, 80, 'brickBlock', blocks)
-
   staticsBlocks(2160, 80, 'brickBlock', blocks)
   staticsBlocks(2176, 80, 'misteryBlock', blocks)
   staticsBlocks(2192, 80, 'misteryBlock', blocks)
   staticsBlocks(2176, 150, 'brickBlock', blocks)
   staticsBlocks(2192, 150, 'brickBlock', blocks)
   staticsBlocks(2208, 80, 'brickBlock', blocks)
-
   staticsBlocks(2870, 150, 'brickBlock', blocks)
   staticsBlocks(2886, 150, 'brickBlock', blocks)
   staticsBlocks(2902, 150, 'misteryBlock', blocks)
   staticsBlocks(2918, 150, 'brickBlock', blocks)
-
   staticsBlocks(2272, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2288, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2304, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2320, config.height - 40, 'staticBlock', blocks)
-
   staticsBlocks(2288, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2304, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2320, config.height - 56, 'staticBlock', blocks)
-
   staticsBlocks(2304, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(2320, config.height - 72, 'staticBlock', blocks)
-
   staticsBlocks(2320, config.height - 88, 'staticBlock', blocks)
-
   staticsBlocks(2368, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2384, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2400, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2416, config.height - 40, 'staticBlock', blocks)
-
   staticsBlocks(2368, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2384, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2400, config.height - 56, 'staticBlock', blocks)
-
   staticsBlocks(2368, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(2384, config.height - 72, 'staticBlock', blocks)
-
   staticsBlocks(2368, config.height - 88, 'staticBlock', blocks)
-
   staticsBlocks(2512, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2528, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2544, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2560, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2576, config.height - 40, 'staticBlock', blocks)
-
   staticsBlocks(2528, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2544, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2560, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2576, config.height - 56, 'staticBlock', blocks)
-
   staticsBlocks(2544, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(2560, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(2576, config.height - 72, 'staticBlock', blocks)
-
   staticsBlocks(2560, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(2576, config.height - 88, 'staticBlock', blocks)
-
   staticsBlocks(2633, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2649, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2665, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(2681, config.height - 40, 'staticBlock', blocks)
-
   staticsBlocks(2633, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2649, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(2665, config.height - 56, 'staticBlock', blocks)
-
   staticsBlocks(2633, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(2649, config.height - 72, 'staticBlock', blocks)
-
   staticsBlocks(2633, config.height - 88, 'staticBlock', blocks)
-
   staticsBlocks(3106, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3122, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3138, config.height - 40, 'staticBlock', blocks)
@@ -320,7 +292,6 @@ function create() {
   staticsBlocks(3202, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 40, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 40, 'staticBlock', blocks)
-
   staticsBlocks(3122, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(3138, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(3154, config.height - 56, 'staticBlock', blocks)
@@ -329,7 +300,6 @@ function create() {
   staticsBlocks(3202, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 56, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 56, 'staticBlock', blocks)
-
   staticsBlocks(3138, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(3154, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(3170, config.height - 72, 'staticBlock', blocks)
@@ -337,32 +307,26 @@ function create() {
   staticsBlocks(3202, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 72, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 72, 'staticBlock', blocks)
-
   staticsBlocks(3154, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(3170, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(3186, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(3202, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 88, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 88, 'staticBlock', blocks)
-
   staticsBlocks(3170, config.height - 104, 'staticBlock', blocks)
   staticsBlocks(3186, config.height - 104, 'staticBlock', blocks)
   staticsBlocks(3202, config.height - 104, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 104, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 104, 'staticBlock', blocks)
-
   staticsBlocks(3186, config.height - 120, 'staticBlock', blocks)
   staticsBlocks(3202, config.height - 120, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 120, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 120, 'staticBlock', blocks)
-
   staticsBlocks(3202, config.height - 136, 'staticBlock', blocks)
   staticsBlocks(3218, config.height - 136, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 136, 'staticBlock', blocks)
-
   staticsBlocks(3218, config.height - 152, 'staticBlock', blocks)
   staticsBlocks(3234, config.height - 152, 'staticBlock', blocks)
-
   staticsBlocks(3400, config.height - 116, 'flagMast', blocks)
   staticsBlocks(3392, config.height - 182, 'flag', blocks)
 
