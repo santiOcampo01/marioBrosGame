@@ -17,7 +17,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 }, // gravedad en el eje y
-      debug: false, // habilita el modo debug para ver colisiones
+      debug: true, // habilita el modo debug para ver colisiones
     },
   },
   scene: {
@@ -192,19 +192,20 @@ function create() {
   createScenery(3265, config.height - 16, 'floorBricks', floorGroup)
   createScenery(3392, config.height - 16, 'floorBricks', floorGroup)
 
-  let blocks = this.physics.add.staticGroup() // grupo de bloques estaticos
+  let blocks = this.physics.add.staticGroup()
   staticsBlocks(264, 150, 'misteryBlock', blocks)
   staticsBlocks(350, 150, 'brickBlock', blocks)
-  staticsBlocks(366, 150, 'misteryBlock', blocks)
+  staticsBlocks(366, 150, 'misteryBlock', blocks, 'mushroom')
   staticsBlocks(382, 150, 'brickBlock', blocks)
   staticsBlocks(398, 150, 'misteryBlock', blocks)
   staticsBlocks(414, 150, 'brickBlock', blocks)
   staticsBlocks(382, 80, 'misteryBlock', blocks)
+
   staticsBlocks(1287, 150, 'brickBlock', blocks)
   staticsBlocks(1303, 150, 'misteryBlock', blocks)
-  staticsBlocks(1318, 150, 'brickBlock', blocks)
+  staticsBlocks(1319, 150, 'brickBlock', blocks)
   staticsBlocks(1334, 80, 'brickBlock', blocks)
-  //pon 5 brickBlocks con 16 pixeles de espacio entre ellos
+
   staticsBlocks(1350, 80, 'brickBlock', blocks)
   staticsBlocks(1366, 80, 'brickBlock', blocks)
   staticsBlocks(1382, 80, 'brickBlock', blocks)
@@ -361,15 +362,16 @@ function create() {
     const {
       texture: { key },
     } = block
+    console.log('bloque', block)
     if (key === 'misteryBlock') {
       if (mario.body.touching.up && block.body.touching.down) {
         if (block.contains === 'mushroom') {
-          let mushroom = this.collectibes.create(block.x, block.y, 'superMushroom')
-
+          let mushroom = this.collectibes.create(block.x, block.y - block.height, 'superMushroom')
+          mushroom.setGravityY(50)
           this.tweens.add({
             targets: mushroom,
             y: mushroom.y - block.height,
-            duration: 100,
+            duration: 500,
           })
           block.anims.play('emptyBlockIdle', true)
         } else {
