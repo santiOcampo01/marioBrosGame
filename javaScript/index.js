@@ -625,8 +625,30 @@ function create() {
           enemy.destroy() // destruimos al enemigo despues de un tiempo
         }
       }, 500)
-    } else {
-      killMario(this) // si mario toca al enemigo desde los lados o abajo lo matamos con la funcion killMario
+    } else if (mario.isGrown) {
+      this.physics.world.pause() // pausamos el mundo
+      this.anims.pauseAll() // pausamos todas las animaciones
+      playAudio('marioPowerDown', this, { volume: 0.1 }) // reproducimos el sonido de power down
+      mario.isBlocked = true // bloqueamos a mario para que no se mueva
+
+      let i = 0
+      let interval = setInterval(() => {
+        mario.anims.play(i % 2 === 0 ? 'marioGrownIdle' : 'marioIdle') // alternamos entre las animaciones de mario grande y pequeño
+        i++
+      }, 100)
+
+      setTimeout(() => {
+        mario.setDisplaySize(18, 18) // cambiamos el tamaño de mario para que se ajuste al sprite de mario pequeño
+        mario.body.setSize(10, 15) // ajustamos el collider al tamaño actual del sprit
+        mario.body.checkCollision.none = false
+        mario.isGrown = false // marcamos a mario como pequeño
+        clearInterval(interval) // limpiamos el intervalo para que no se repita
+        mario.isBlocked = false // desbloqueamos a mario
+        this.physics.world.resume() // reanudamos el mundo
+        this.anims.resumeAll() // reanudamos todas las animaciones
+      }, 1000)
+    }else {
+      killMario(this)
     }
   }
 

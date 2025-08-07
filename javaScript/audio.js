@@ -2,6 +2,7 @@
 const INIT_AUDIO = [
   { key: 'gameOver', path: 'assets/sound/music/gameover.mp3' },
   { key: 'marioJumpSound', path: 'assets/sound/effects/jump.mp3' },
+  { key: 'marioPowerDown', path: 'assets/sound/effects/powerdown.mp3' },
   { key: 'goombaStomp', path: 'assets/sound/effects/goomba-stomp.wav' },
   { key: 'overWorld', path: 'assets/sound/music/overworld/theme.mp3' },
   { key: 'coinCollect', path: 'assets/sound/effects/coin.mp3' },
