@@ -8,6 +8,7 @@ const INIT_AUDIO = [
   { key: 'marioPowerUp', path: 'assets/sound/effects/consume-powerup.mp3' },
   { key: 'blockBreak', path: 'assets/sound/effects/break-block.wav' },
   { key: 'blockBump', path: 'assets/sound/effects/block-bump.wav' },
+  { key: 'fireballSound', path: 'assets/sound/effects/fireball.mp3' },
 ]
 
 // funcion para cargar los audios recorriendo el objeto INIT_AUDIO donde esta su key y path

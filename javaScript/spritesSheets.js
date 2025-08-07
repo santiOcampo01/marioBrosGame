@@ -13,6 +13,12 @@ const INIT_SPRITESHEET = [
     frameHeight: 32,
   },
   {
+    key: 'marioFire',
+    path: 'assets/entities/mario-fire.png',
+    frameWidth: 18,
+    frameHeight: 32,
+  },
+  {
     key: 'goomba',
     path: 'assets/entities/overworld/goomba.png',
     frameWidth: 16,
@@ -35,6 +41,24 @@ const INIT_SPRITESHEET = [
     path: 'assets/blocks/overworld/brick-debris.png',
     frameWidth: 8,
     frameHeight: 8,
+  },
+  {
+    key: 'fireFlower',
+    path: 'assets/collectibles/overworld/fire-flower.png',
+    frameWidth: 16,
+    frameHeight: 16,
+  },
+  {
+    key: 'marioFireBall',
+    path: 'assets/entities/fireball.png',
+    frameWidth: 8,
+    frameHeight: 8,
+  },
+  {
+    key: 'fireBallExplosion',
+    path: 'assets/entities/fireball-explosion.png',
+    frameWidth: 16,
+    frameHeight: 16,
   },
 ]
 

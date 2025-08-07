@@ -156,13 +156,72 @@ function create() {
     .setCollideWorldBounds(true)
     .setGravityY(300) //inicializa a mario
 
-  // this.enemy = this.physics.add
-  //   .sprite(100, config.height - 32, 'goomba')
-  //   .setOrigin(0, 1)
-  //   .setGravityY(300)
-  //   .setGravityX(-50) //inicializa  un enemigo en este caso goomba
+  // Propiedades adicionales de Mario
+  this.mario.isDead = false
+  this.mario.isBlocked = false
+  this.mario.isGrown = false
+  this.mario.isFire = false
+  this.mario.lastFireTime = 0
 
-  // this.enemy.anims.play('goombaWalk', true) //animacion de goomba
+  // Crear grupo de enemigos para manejar múltiples Goombas
+  this.enemies = this.physics.add.group()
+
+  // Crear Goombas en diferentes posiciones estratégicas
+  this.enemy1 = this.enemies
+    .create(300, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-30) // velocidad más realista como en el original
+    .setCollideWorldBounds(false) // no rebotar en los límites
+    .setBounce(0, 0)
+
+  this.enemy2 = this.enemies
+    .create(450, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-25)
+    .setCollideWorldBounds(false)
+    .setBounce(0, 0)
+
+  this.enemy3 = this.enemies
+    .create(900, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-35)
+    .setCollideWorldBounds(false)
+    .setBounce(0, 0)
+
+  this.enemy4 = this.enemies
+    .create(1200, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-30)
+    .setCollideWorldBounds(false)
+    .setBounce(0, 0)
+
+  this.enemy5 = this.enemies
+    .create(1600, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-28)
+    .setCollideWorldBounds(false)
+    .setBounce(0, 0)
+
+  this.enemy6 = this.enemies
+    .create(2200, config.height - 32, 'goomba')
+    .setOrigin(0, 1)
+    .setGravityY(300)
+    .setVelocityX(-32)
+    .setCollideWorldBounds(false)
+    .setBounce(0, 0)
+
+  // Propiedades adicionales para cada Goomba
+  this.enemies.children.entries.forEach(enemy => {
+    enemy.isDead = false
+    enemy.direction = -1 // -1 = izquierda, 1 = derecha
+    enemy.speed = Math.abs(enemy.body.velocity.x) // usar la velocidad que se le asignó
+    enemy.anims.play('goombaWalk', true)
+  })
   let floorGroup = this.physics.add.staticGroup()
   createScenery(0, config.height - 16, 'floorBricks', floorGroup)
   createScenery(128, config.height - 16, 'floorBricks', floorGroup)
@@ -195,14 +254,14 @@ function create() {
   let blocks = this.physics.add.staticGroup()
   staticsBlocks(264, 150, 'misteryBlock', blocks)
   staticsBlocks(350, 150, 'brickBlock', blocks)
-  staticsBlocks(366, 150, 'misteryBlock', blocks, 'mushroom')
+  staticsBlocks(366, 150, 'misteryBlock', blocks, 'collectible')
   staticsBlocks(382, 150, 'brickBlock', blocks)
   staticsBlocks(398, 150, 'misteryBlock', blocks)
   staticsBlocks(414, 150, 'brickBlock', blocks)
   staticsBlocks(382, 80, 'misteryBlock', blocks)
 
   staticsBlocks(1287, 150, 'brickBlock', blocks)
-  staticsBlocks(1303, 150, 'misteryBlock', blocks)
+  staticsBlocks(1303, 150, 'misteryBlock', blocks, 'collectible')
   staticsBlocks(1319, 150, 'brickBlock', blocks)
   staticsBlocks(1334, 80, 'brickBlock', blocks)
 
@@ -339,6 +398,9 @@ function create() {
 
   this.collectibes.create(300, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5)
 
+  // Grupo de bolas de fuego
+  this.fireBalls = this.physics.add.group()
+
   this.physics.add.overlap(this.mario, this.collectibes, collectItem, null, this) //colision entre mario y los objetos coleccionables
 
   this.physics.world.setBounds(0, 0, 4000, config.height) // establece los limites del mundo del juego
@@ -347,9 +409,18 @@ function create() {
 
   this.physics.add.collider(this.mario, tubes)
 
-  // this.physics.add.collider(this.enemy, floorGroup) //colision entre los enemigos y el suelo
+  // Colisiones de las bolas de fuego
+  this.physics.add.collider(this.fireBalls, floorGroup, onFireBallHitGround, null, this)
+  this.physics.add.collider(this.fireBalls, blocks, onFireBallHitBlock, null, this)
+  this.physics.add.collider(this.fireBalls, tubes, onFireBallHitBlock, null, this)
 
-  // this.physics.add.collider(this.mario, this.enemy, onHitEnemy, null, this) //colision entre mario y los enemigos
+  // Colisiones de enemigos
+  this.physics.add.collider(this.enemies, floorGroup) //colision entre los enemigos y el suelo
+  this.physics.add.collider(this.enemies, blocks, onEnemyHitBlock, null, this) // enemigos rebotan en bloques
+  this.physics.add.collider(this.enemies, tubes, onEnemyHitBlock, null, this) // enemigos rebotan en tuberías
+  this.physics.add.overlap(this.fireBalls, this.enemies, onFireBallHitEnemy, null, this) // bolas de fuego vs enemigos
+
+  this.physics.add.collider(this.mario, this.enemies, onHitEnemy, null, this) //colision entre mario y los enemigos
   this.physics.add.collider(this.mario, blocks, collectBlocks, null, this)
 
   this.cameras.main.setBounds(0, 0, 4000, config.height) // establece los limites de la camara
@@ -362,18 +433,22 @@ function create() {
     const {
       texture: { key },
     } = block
-    console.log('bloque', block)
     if (key === 'misteryBlock') {
       if (mario.body.touching.up && block.body.touching.down) {
-        if (block.contains === 'mushroom') {
-          let mushroom = this.collectibes.create(block.x, block.y - block.height, 'superMushroom')
-          mushroom.setGravityY(50)
-          this.tweens.add({
-            targets: mushroom,
-            y: mushroom.y - block.height,
-            duration: 500,
-          })
-          block.anims.play('emptyBlockIdle', true)
+        if (block.contains === 'collectible') {
+          if (!mario.isGrown) {
+            let mushroom = this.collectibes.create(block.x, block.y - block.height, 'superMushroom')
+            mushroom.y = block.y
+            this.tweens.add({
+              targets: mushroom,
+              y: mushroom.y - block.height,
+              duration: 500,
+            })
+            block.anims.play('emptyBlockIdle', true)
+          } else {
+            let fireFlower = this.collectibes.create(block.x, block.y - block.height, 'fireFlower').anims.play('fireFlowerIdle', true)
+            block.anims.play('emptyBlockIdle', true)
+          }
         } else {
           block.anims.play('emptyBlockIdle', true)
           this.tweens.add({
@@ -481,6 +556,27 @@ function create() {
         this.physics.world.resume() // reanudamos el mundo
         this.anims.resumeAll() // reanudamos todas las animaciones
       }, 1000)
+    } else if (key === 'fireFlower') {
+      this.physics.world.pause() // pausamos el mundo
+      this.anims.pauseAll() // pausamos todas las animaciones
+      playAudio('marioPowerUp', this, { volume: 0.1 }) // reproducimos el sonido de power up
+      mario.isBlocked = true // bloqueamos a mario para que no se mueva
+
+      let i = 0
+      let interval = setInterval(() => {
+        mario.anims.play(i % 2 === 0 ? 'marioGrownIdle' : 'marioFireIdle') // alternamos entre las animaciones de mario grande y pequeño
+        i++
+      }, 100)
+
+      setTimeout(() => {
+        mario.setDisplaySize(18, 32) // cambiamos el tamaño de mario para que se ajuste a el sprite de mario grande
+        mario.body.setSize(18, 32) // cambiamos la colision de mario para que se ajuste al sprite de mario grande
+        mario.isFire = true // marcamos a mario como con fuego
+        clearInterval(interval) // limpiamos el intervalo para que no se repita
+        mario.isBlocked = false // desbloqueamos a mario
+        this.physics.world.resume() // reanudamos el mundo
+        this.anims.resumeAll() // reanudamos todas las animaciones
+      }, 1000)
     }
   }
 
@@ -512,28 +608,159 @@ function create() {
   }
 
   function onHitEnemy(mario, enemy) {
+    if (enemy.isDead) return // si el enemigo ya está muerto, no hacer nada
+
     if (mario.body.touching.down && enemy.body.touching.up) {
       // si mario toca al enemigo desde arriba lo matamos
+      enemy.isDead = true
       enemy.anims.play('goombaDead', true) // reproducimos la animacion de muerte del enemigo
       mario.setVelocityY(-200) // hacemos que mario salte
       enemy.setVelocityX(0) // detenemos al enemigo
+      enemy.setVelocityY(0) // detenemos movimiento vertical
       playAudio('goombaStomp', this) // reproducimos el sonido de stomp
       addToScore(200, enemy, this)
+
       setTimeout(() => {
-        enemy.destroy() // destruimos al enemigo despues de un tiempo
+        if (enemy.scene) {
+          enemy.destroy() // destruimos al enemigo despues de un tiempo
+        }
       }, 500)
     } else {
       killMario(this) // si mario toca al enemigo desde los lados o abajo lo matamos con la funcion killMario
     }
   }
+
+  // Función cuando el enemigo toca un bloque o tubería
+  function onEnemyHitBlock(enemy, block) {
+    if (enemy.isDead) return
+
+    // Cambiar dirección
+    enemy.direction *= -1
+    enemy.setVelocityX(enemy.direction * enemy.speed)
+  }
+
+  // Función cuando una bola de fuego toca un enemigo
+  function onFireBallHitEnemy(fireBall, enemy) {
+    if (enemy.isDead) return
+
+    // Matar al enemigo
+    enemy.isDead = true
+    enemy.anims.play('goombaDead', true)
+    enemy.setVelocityX(0)
+    enemy.setVelocityY(0)
+    playAudio('goombaStomp', fireBall.scene) // reproducimos el sonido de stomp
+    addToScore(200, enemy, fireBall.scene)
+
+    // Crear explosión de bola de fuego
+    createFireBallExplosion(fireBall.x, fireBall.y, fireBall.scene)
+    fireBall.destroy()
+
+    setTimeout(() => {
+      if (enemy.scene) {
+        enemy.destroy()
+      }
+    }, 500)
+  }
+
+  // Función para crear bolas de fuego
+  function createFireBall(game) {
+    const { mario } = game
+    const currentTime = game.time.now
+
+    // Limitar la frecuencia de lanzamiento (cada 300ms)
+    if (currentTime - mario.lastFireTime < 300) return
+
+    mario.lastFireTime = currentTime
+
+    // Crear la bola de fuego
+    const fireBall = game.fireBalls.create(mario.x + (mario.flipX ? -10 : 10), mario.y - 16, 'marioFireBall')
+
+    fireBall.setVelocityX(mario.flipX ? -200 : 200)
+    fireBall.setVelocityY(-100)
+    fireBall.setBounce(0.7)
+    fireBall.setCollideWorldBounds(false)
+    fireBall.anims.play('fireBallMove', true)
+
+    // Reproducir sonido
+    playAudio('fireballSound', game, { volume: 0.2 })
+
+    // Destruir la bola de fuego después de 3 segundos
+    game.time.addEvent({
+      delay: 3000,
+      callback: () => {
+        if (fireBall && fireBall.scene) {
+          fireBall.destroy()
+        }
+      },
+    })
+  }
+
+  // Función cuando la bola de fuego toca el suelo
+  function onFireBallHitGround(fireBall, ground) {
+    // Solo rebotar una vez, luego continuar rodando
+    if (fireBall.body.velocity.y > 0) {
+      fireBall.setVelocityY(-150)
+    }
+  }
+
+  // Función cuando la bola de fuego toca un bloque
+  function onFireBallHitBlock(fireBall, block) {
+    createFireBallExplosion(fireBall.x, fireBall.y, fireBall.scene)
+    fireBall.destroy()
+  }
+
+  // Función para crear explosión de bola de fuego
+  function createFireBallExplosion(x, y, scene) {
+    const explosion = scene.physics.add.sprite(x, y, 'fireBallExplosion')
+    explosion.anims.play('fireBallExplosion', true)
+
+    explosion.on('animationcomplete', () => {
+      explosion.destroy()
+    })
+  }
+
+  // Exponer la función createFireBall para que pueda ser usada desde controls.js
+  this.createFireBall = createFireBall
 }
 
 function update() {
-  const { mario } = this //desestructuramos a mario de this
+  const { mario, fireBalls, enemies } = this //desestructuramos a mario, bolas de fuego y enemigos de this
   controls(this) // llamamos a la funcion de controles
+
   if (mario.y >= config.height) {
     killMario(this) // si mario se cae del suelo a el vacio lo matamos
   }
+
+  // Actualizar comportamiento de los Goombas
+  enemies.children.entries.forEach(enemy => {
+    if (!enemy.isDead) {
+      // Verificar si el Goomba se cae del borde
+      if (enemy.y >= config.height) {
+        enemy.destroy()
+        return
+      }
+
+      // Verificar si el Goomba está tocando el suelo
+      if (enemy.body.touching.down) {
+        // Mantener la velocidad horizontal constante
+        if (Math.abs(enemy.body.velocity.x) < enemy.speed) {
+          enemy.setVelocityX(enemy.direction * enemy.speed)
+        }
+      }
+
+      // Destruir Goombas que salen de los límites izquierdos del mundo
+      if (enemy.x < -50) {
+        enemy.destroy()
+      }
+    }
+  })
+
+  // Destruir bolas de fuego que salen de los límites del mundo
+  fireBalls.children.entries.forEach(fireBall => {
+    if (fireBall.x < 0 || fireBall.x > 4000 || fireBall.y > config.height) {
+      fireBall.destroy()
+    }
+  })
 }
 
 function killMario(game) {
