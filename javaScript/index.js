@@ -446,7 +446,7 @@ function create() {
             })
             block.anims.play('emptyBlockIdle', true)
           } else {
-            let fireFlower = this.collectibes.create(block.x, block.y - block.height, 'fireFlower').anims.play('fireFlowerIdle', true)
+            this.collectibes.create(block.x, block.y - block.height, 'fireFlower').anims.play('fireFlowerIdle', true)
             block.anims.play('emptyBlockIdle', true)
           }
         } else {
