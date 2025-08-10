@@ -394,7 +394,12 @@ function create() {
   this.collectibes.create(150, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5) //monedas
   this.collectibes.create(300, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5) //monedas
 
-  this.collectibes.create(200, config.height - 40, 'superMushroom') //super champiñon
+  // Grupo dinámico para mushrooms (tienen físicas y se mueven)
+  this.mushroomGroup = this.physics.add.group()
+  // Ejemplo opcional de un mushroom ya existente en el suelo con movimiento
+  // const groundMushroom = this.mushroomGroup.create(200, config.height - 60, 'superMushroom')
+  // groundMushroom.body.setSize(16, 16).setOffset(0, 0)
+  // groundMushroom.setVelocityX(40)
 
   this.collectibes.create(300, 150, 'coin').anims.play('coinIdle', true).setOrigin(0.5, 0.5)
 
@@ -402,6 +407,7 @@ function create() {
   this.fireBalls = this.physics.add.group()
 
   this.physics.add.overlap(this.mario, this.collectibes, collectItem, null, this) //colision entre mario y los objetos coleccionables
+  this.physics.add.overlap(this.mario, this.mushroomGroup, collectItem, null, this) //colision mario y mushrooms dinámicos
 
   this.physics.world.setBounds(0, 0, 4000, config.height) // establece los limites del mundo del juego
 
@@ -423,6 +429,11 @@ function create() {
   this.physics.add.collider(this.mario, this.enemies, onHitEnemy, null, this) //colision entre mario y los enemigos
   this.physics.add.collider(this.mario, blocks, collectBlocks, null, this)
 
+  // Colisiones de mushrooms con escenario
+  this.physics.add.collider(this.mushroomGroup, floorGroup)
+  this.physics.add.collider(this.mushroomGroup, blocks, onMushroomHitObstacle, null, this)
+  this.physics.add.collider(this.mushroomGroup, tubes, onMushroomHitObstacle, null, this)
+
   this.cameras.main.setBounds(0, 0, 4000, config.height) // establece los limites de la camara
 
   this.cameras.main.startFollow(this.mario) // hace que la camara siga a mario
@@ -437,13 +448,26 @@ function create() {
       if (mario.body.touching.up && block.body.touching.down) {
         if (block.contains === 'collectible') {
           if (!mario.isGrown) {
-            let mushroom = this.collectibes.create(block.x, block.y - block.height, 'superMushroom')
-            mushroom.y = block.y
+            // Crear mushroom dinámico que emerge y luego se mueve
+            let mushroom = this.mushroomGroup.create(block.x, block.y - block.height / 2, 'superMushroom')
+            mushroom.setOrigin(0.5, 1)
+            mushroom.body.setAllowGravity(false)
+            mushroom.body.setSize(16, 16).setOffset(0, 0)
+            mushroom.body.checkCollision.none = true // evitar atascarse con el bloque mientras emerge
+            const targetY = block.y - block.height
+            mushroom.y = block.y // empieza dentro del bloque
             this.tweens.add({
               targets: mushroom,
-              y: mushroom.y - block.height,
-              duration: 500,
-            })
+              y: targetY,
+              duration: 400,
+              onComplete: () => {
+              if (!mushroom.scene) return
+              mushroom.body.setAllowGravity(true)
+              mushroom.body.checkCollision.none = false
+              // Siempre moverse hacia la derecha inicialmente
+            },
+          })
+          mushroom.setVelocityX(40)
             block.anims.play('emptyBlockIdle', true)
           } else {
             this.collectibes.create(block.x, block.y - block.height, 'fireFlower').anims.play('fireFlowerIdle', true)
@@ -647,7 +671,7 @@ function create() {
         this.physics.world.resume() // reanudamos el mundo
         this.anims.resumeAll() // reanudamos todas las animaciones
       }, 1000)
-    }else {
+    } else {
       killMario(this)
     }
   }
@@ -659,6 +683,20 @@ function create() {
     // Cambiar dirección
     enemy.direction *= -1
     enemy.setVelocityX(enemy.direction * enemy.speed)
+  }
+
+  // Cuando un mushroom choca con un bloque / tubo invierte dirección
+  function onMushroomHitObstacle(mushroom, obstacle) {
+    if (!mushroom.scene) return
+    // Invertir velocidad horizontal manteniendo magnitud
+    const currentVx = mushroom.body.velocity.x
+    if (Math.abs(currentVx) < 5) {
+      // si casi se detuvo, reiniciar con velocidad guardada
+      const base = mushroom.getData('speed') || 40
+      mushroom.setVelocityX(base * (Math.random() < 0.5 ? -1 : 1))
+    } else {
+      mushroom.setVelocityX(-currentVx)
+    }
   }
 
   // Función cuando una bola de fuego toca un enemigo
